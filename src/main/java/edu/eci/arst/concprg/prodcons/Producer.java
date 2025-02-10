@@ -16,14 +16,16 @@ import java.util.logging.Logger;
  *
  * @author hcadavid
  */
-public class Producer extends Thread {
+public class Producer extends Thread
+{
     private BlockingQueue<Integer> queue = null;
 
     private int dataSeed = 0;
     private Random rand = null;
     private final long stockLimit;
 
-    public Producer(BlockingQueue<Integer> queue, long stockLimit) {
+    public Producer(BlockingQueue<Integer> queue, long stockLimit)
+    {
         this.queue = queue;
         rand = new Random();
         this.stockLimit = stockLimit;

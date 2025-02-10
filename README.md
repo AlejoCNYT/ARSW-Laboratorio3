@@ -25,9 +25,15 @@ Control de hilos con wait/notify. Productor/consumidor.
 ![imagen](https://github.com/user-attachments/assets/038a5f5f-84f0-4f82-b04b-627a8797b407)
 
 **RTA**:// _Se eliminaron las demoras por .sleep en consumidor/productor. Se cambiaron las "Queues" por "BlockingQueue", ya que tienen propiedades de mejora en entornos concurrentes. Ahora, se producen más de los consumidores._
-
    
-5. Haga que ahora el productor produzca muy rápido, y el consumidor consuma lento. Teniendo en cuenta que el productor conoce un límite de Stock (cuantos elementos debería tener, a lo sumo en la cola), haga que dicho límite se respete. Revise el API de la colección usada como cola para ver cómo garantizar que dicho límite no se supere. Verifique que, al poner un límite pequeño para el 'stock', no haya consumo alto de CPU ni errores.
+4. Haga que ahora el productor produzca muy rápido, y el consumidor consuma lento. Teniendo en cuenta que el productor conoce un límite de Stock (cuantos elementos debería tener, a lo sumo en la cola), haga que dicho límite se respete. Revise el API de la colección usada como cola para ver cómo garantizar que dicho límite no se supere. Verifique que, al poner un límite pequeño para el 'stock', no haya consumo alto de CPU ni errores.
+
+![imagen](https://github.com/user-attachments/assets/c5c7b769-7ef6-4a12-8755-512572360cb2)
+
+![imagen](https://github.com/user-attachments/assets/2f4b83a8-47a6-426a-92d0-bf1bdd862dc1)
+
+**RTA**:// _La mejora realizada incluye manejo de sleep por 3 segundos en el consumidor, y en productor por medio segundo. Un manejo de Errores es más limpio con "Thread.currentThread().interrupt()"._
+
 
 
 ##### Parte II. – Antes de terminar la clase.

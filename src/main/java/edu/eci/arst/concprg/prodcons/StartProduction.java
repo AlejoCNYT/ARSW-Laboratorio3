@@ -15,26 +15,26 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StartProduction {
-    
-    
-    public static void main(String[] args) {
+public class StartProduction
+{
+
+    public static void main(String[] args)
+    {
         
-        Queue<Integer> queue=new LinkedBlockingQueue<>();
+        BlockingQueue<Integer> queue=new LinkedBlockingQueue<>(10);
         
-        
-        new Producer(queue,Long.MAX_VALUE).start();
-        
-        //let the producer create products for 5 seconds (stock).
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(StartProduction.class.getName()).log(Level.SEVERE, null, ex);
+        int numProducers = 3;
+        for (int i = 0; i < numProducers; i++)
+        {
+            new Producer(queue, 100).start();
         }
-        
-        
-        new Consumer(queue).start();
+
+        int numConsumers = 1;
+        for (int i = 0; i < numConsumers; i++)
+        {
+            new Consumer(queue).start();
+        }
+
     }
-    
 
 }

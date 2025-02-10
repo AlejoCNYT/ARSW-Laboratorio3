@@ -39,13 +39,18 @@ public class ControlFrame extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
+    public static void main(String[] args)
+    {
+        EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
                     ControlFrame frame = new ControlFrame();
                     frame.setVisible(true);
-                } catch (Exception e) {
+                } catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -67,8 +72,10 @@ public class ControlFrame extends JFrame {
         contentPane.add(toolBar, BorderLayout.NORTH);
 
         final JButton btnStart = new JButton("Start");
-        btnStart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        btnStart.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
 
                 immortals = setupInmortals();
 
@@ -97,8 +104,8 @@ public class ControlFrame extends JFrame {
                 }
 
                 statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
-                
-                
+
+
 
             }
         });
@@ -135,8 +142,8 @@ public class ControlFrame extends JFrame {
         output = new JTextArea();
         output.setEditable(false);
         scrollPane.setViewportView(output);
-        
-        
+
+
         statisticsLabel = new JLabel("Immortals total health:");
         contentPane.add(statisticsLabel, BorderLayout.SOUTH);
 
@@ -145,7 +152,7 @@ public class ControlFrame extends JFrame {
     public List<Immortal> setupInmortals() {
 
         ImmortalUpdateReportCallback ucb=new TextAreaUpdateReportCallback(output,scrollPane);
-        
+
         try {
             int ni = Integer.parseInt(numOfImmortals.getText());
 
@@ -173,8 +180,8 @@ class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback{
     public TextAreaUpdateReportCallback(JTextArea ta,JScrollPane jsp) {
         this.ta = ta;
         this.jsp=jsp;
-    }       
-    
+    }
+
     @Override
     public void processReport(String report) {
         ta.append(report);
@@ -189,5 +196,5 @@ class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback{
         );
 
     }
-    
+
 }

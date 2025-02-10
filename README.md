@@ -24,7 +24,7 @@ Control de hilos con wait/notify. Productor/consumidor.
 
 ![imagen](https://github.com/user-attachments/assets/038a5f5f-84f0-4f82-b04b-627a8797b407)
 
-**RTA**:// _Se eliminaron las demoras por .sleep en consumidor/productor. Se cambiaron las "Queues" por "BlockingQueue", ya que tienen propiedades de mejora en entornos concurrentes. Ahora, se producen más de los consumidores._
+_Se eliminaron las demoras por .sleep en consumidor/productor. Se cambiaron las "Queues" por "BlockingQueue", ya que tienen propiedades de mejora en entornos concurrentes. Ahora, se producen más de los consumidores._
    
 4. Haga que ahora el productor produzca muy rápido, y el consumidor consuma lento. Teniendo en cuenta que el productor conoce un límite de Stock (cuantos elementos debería tener, a lo sumo en la cola), haga que dicho límite se respete. Revise el API de la colección usada como cola para ver cómo garantizar que dicho límite no se supere. Verifique que, al poner un límite pequeño para el 'stock', no haya consumo alto de CPU ni errores.
 
@@ -32,7 +32,7 @@ Control de hilos con wait/notify. Productor/consumidor.
 
 ![imagen](https://github.com/user-attachments/assets/2f4b83a8-47a6-426a-92d0-bf1bdd862dc1)
 
-**RTA**:// _La mejora realizada incluye manejo de sleep por 3 segundos en el consumidor, y en productor por medio segundo. Un manejo de Errores es más limpio con "Thread.currentThread().interrupt()"._
+_La mejora realizada incluye manejo de sleep por 3 segundos en el consumidor, y en productor por medio segundo. Un manejo de Errores es más limpio con "Thread.currentThread().interrupt()"._
 
 
 
@@ -42,6 +42,8 @@ Teniendo en cuenta los conceptos vistos de condición de carrera y sincronizaci�
 
 - La búsqueda distribuida se detenga (deje de buscar en las listas negras restantes) y retorne la respuesta apenas, en su conjunto, los hilos hayan detectado el número de ocurrencias requerido que determina si un host es confiable o no (_BLACK_LIST_ALARM_COUNT_).
 - Lo anterior, garantizando que no se den condiciones de carrera.
+
+  _Se crea la clase "BlackListSearch" usando AtomicInteger  para contar de forma segura las ocurrencias, ExcecutorService para gestionar hilos y poder cancelarlos y, Mecanismos de sincronización que aseguran la correcta lectura y actualización de la variable compartida._
 
 ##### Parte III. – Avance para el martes, antes de clase.
 

@@ -17,17 +17,17 @@ Control de hilos con wait/notify. Productor/consumidor.
 
 
    **RTA**:// _Como se puede ver en la imagen, el consumo de CPU aumenta casi linealmente. Esto se debe a que la clase Consumer, no tiene un momento de pausa atendido por los métodos wait/notify, lo que produce un ciclo 	infinito. Se genera bbusy-wait, al generar un consumo innecesario en esta clase._
-
-   ![imagen](https://github.com/user-attachments/assets/5add55db-0e30-4217-a581-8b5de04fbfe7)
-   ![imagen](https://github.com/user-attachments/assets/3d34664a-0532-4880-8443-239b9b38fec7)
-
-   _Por su parte, el programa de **inmmortals** está simulando peleas, con pequeñas pausas de 1 miliseg. Esto, para generar un marcador de peleas interminable, que no se soslaye entre sí. 
-   En consecuencia, el efecto generado es un exceso de multihilos compitiendo entre sí._
-
-
    
 3. Haga los ajustes necesarios para que la solución use más eficientemente la CPU, teniendo en cuenta que -por ahora- la producción es lenta y el consumo es rápido. Verifique con JVisualVM que el consumo de CPU se reduzca.
-4. Haga que ahora el productor produzca muy rápido, y el consumidor consuma lento. Teniendo en cuenta que el productor conoce un límite de Stock (cuantos elementos debería tener, a lo sumo en la cola), haga que dicho límite se respete. Revise el API de la colección usada como cola para ver cómo garantizar que dicho límite no se supere. Verifique que, al poner un límite pequeño para el 'stock', no haya consumo alto de CPU ni errores.
+
+![imagen](https://github.com/user-attachments/assets/f629eef7-66cf-4dae-ada7-61dcf5efc177)
+
+![imagen](https://github.com/user-attachments/assets/038a5f5f-84f0-4f82-b04b-627a8797b407)
+
+**RTA**:// _Se eliminaron las demoras por .sleep en consumidor/productor. Se cambiaron las "Queues" por "BlockingQueue", ya que tienen propiedades de mejora en entornos concurrentes. Ahora, se producen más de los consumidores._
+
+   
+5. Haga que ahora el productor produzca muy rápido, y el consumidor consuma lento. Teniendo en cuenta que el productor conoce un límite de Stock (cuantos elementos debería tener, a lo sumo en la cola), haga que dicho límite se respete. Revise el API de la colección usada como cola para ver cómo garantizar que dicho límite no se supere. Verifique que, al poner un límite pequeño para el 'stock', no haya consumo alto de CPU ni errores.
 
 
 ##### Parte II. – Antes de terminar la clase.

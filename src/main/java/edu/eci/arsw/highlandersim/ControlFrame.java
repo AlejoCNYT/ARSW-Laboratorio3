@@ -24,7 +24,7 @@ import javax.swing.JScrollBar;
 
 public class ControlFrame extends JFrame {
 
-    private static final int DEFAULT_IMMORTAL_HEALTH = 100;
+    private static final int DEFAULT_IMMORTAL_HEALTH = 10000;
     private static final int DEFAULT_DAMAGE_VALUE = 10;
 
     private JPanel contentPane;
@@ -153,17 +153,20 @@ public class ControlFrame extends JFrame {
 
         ImmortalUpdateReportCallback ucb=new TextAreaUpdateReportCallback(output,scrollPane);
 
-        try {
+        try
+        {
             int ni = Integer.parseInt(numOfImmortals.getText());
 
             List<Immortal> il = new LinkedList<Immortal>();
 
-            for (int i = 0; i < ni; i++) {
+            for (int i = 0; i < ni; i++)
+            {
                 Immortal i1 = new Immortal("im" + i, il, DEFAULT_IMMORTAL_HEALTH, DEFAULT_DAMAGE_VALUE,ucb);
                 il.add(i1);
             }
             return il;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             JOptionPane.showConfirmDialog(null, "Número inválido.");
             return null;
         }

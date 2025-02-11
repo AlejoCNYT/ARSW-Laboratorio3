@@ -3,7 +3,8 @@ package edu.eci.arsw.highlandersim;
 import java.util.List;
 import java.util.Random;
 
-public class Immortal extends Thread {
+public class Immortal extends Thread
+{
 
     private ImmortalUpdateReportCallback updateCallback=null;
     
@@ -17,8 +18,8 @@ public class Immortal extends Thread {
 
     private final Random r = new Random(System.currentTimeMillis());
 
-
-    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb) {
+    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb)
+    {
         super(name);
         this.updateCallback=ucb;
         this.name = name;
@@ -27,9 +28,10 @@ public class Immortal extends Thread {
         this.defaultDamageValue=defaultDamageValue;
     }
 
-    public void run() {
-
-        while (true) {
+    public void run()
+    {
+        while (true)
+        {
             Immortal im;
 
             int myIndex = immortalsPopulation.indexOf(this);
@@ -37,7 +39,8 @@ public class Immortal extends Thread {
             int nextFighterIndex = r.nextInt(immortalsPopulation.size());
 
             //avoid self-fight
-            if (nextFighterIndex == myIndex) {
+            if (nextFighterIndex == myIndex)
+            {
                 nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
             }
 
@@ -45,39 +48,58 @@ public class Immortal extends Thread {
 
             this.fight(im);
 
-            try {
+            try
+            {
                 Thread.sleep(1);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
-
         }
-
     }
 
-    public void fight(Immortal i2) {
+    public void fight(Immortal i2)
+    {
+        Immortal first = this;
+        Immortal second = i2;
 
-        if (i2.getHealth() > 0) {
-            i2.changeHealth(i2.getHealth() - defaultDamageValue);
-            this.health += defaultDamageValue;
-            updateCallback.processReport("Fight: " + this + " vs " + i2+"\n");
-        } else {
-            updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
+        if (System.identityHashCode(this) > System.identityHashCode(i2))
+        {
+            first = i2;
+            second = this;
         }
 
+        synchronized (first)
+        {
+            synchronized (second)
+            {
+                if (i2.getHealth() > 0)
+                {
+                    i2.changeHealth(i2.getHealth() - defaultDamageValue);
+                    this.health += defaultDamageValue;
+                    updateCallback.processReport("Fight: " + this + " vs " + i2 + "\n");
+                } else
+                {
+                    updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
+                }
+            }
+        }
     }
 
-    public void changeHealth(int v) {
+    public void changeHealth(int v)
+    {
         health = v;
+
     }
 
-    public int getHealth() {
+    public int getHealth()
+    {
         return health;
     }
 
     @Override
-    public String toString() {
-
+    public String toString()
+    {
         return name + "[" + health + "]";
     }
 

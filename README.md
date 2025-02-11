@@ -131,13 +131,13 @@ Sincronización y Dead-Locks.
 
     _Se implementa un condicional para lograr consitencia en el orden de sincronización:_
 
-    	```
+    ```
 	if (System.identityHashCode(this) > System.identityHashCode(i2))
         {
             first = i2;
             second = this;
         }	
-    	```
+    ```
 
 15. Un elemento molesto para la simulación es que en cierto punto de la misma hay pocos 'inmortales' vivos realizando peleas fallidas con 'inmortales' ya muertos. Es necesario ir suprimiendo los inmortales muertos de la simulación a medida que van muriendo. Para esto:
 	* Analizando el esquema de funcionamiento de la simulación, esto podría crear una condición de carrera? Implemente la funcionalidad, ejecute la simulación y observe qué problema se presenta cuando hay muchos 'inmortales' en la misma. Escriba sus conclusiones al respecto en el archivo RESPUESTAS.txt.

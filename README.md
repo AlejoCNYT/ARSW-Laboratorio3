@@ -95,7 +95,6 @@ Sincronización y Dead-Locks.
 
  	_Se realiza un bloqueo en ambos jugadores, en el método fight() de la clase "Immortal"._
 
-
    ```public void fight(Immortal i2)
     {
         synchronized (this)
@@ -107,19 +106,34 @@ Sincronización y Dead-Locks.
         }
 	```
 
-	_Lo anterior, bloque ambos jugadores y, evita modificaciones en "i2" y en "health", simultáneos a otros hilos. _
+	_Lo anterior, bloque ambos jugadores y, evita modificaciones en "i2" y en "health", simultáneos a otros hilos._
 
 10. Tras implementar su estrategia, ponga a correr su programa, y ponga atención a si éste se llega a detener. Si es así, use los programas jps y jstack para identificar por qué el programa se detuvo.
 
-11. Plantee una estrategia para corregir el problema antes identificado (puede revisar de nuevo las páginas 206 y 207 de _Java Concurrency in Practice_).
+    ![imagen](https://github.com/user-attachments/assets/7855fd32-1e42-4cdb-86a5-9fde9e65d575)
 
-12. Una vez corregido el problema, rectifique que el programa siga funcionando de manera consistente cuando se ejecutan 100, 1000 o 10000 inmortales. Si en estos casos grandes se empieza a incumplir de nuevo el invariante, debe analizar lo realizado en el paso 4.
+    _Se produce **deadlock**, debido al ajuste anidado anterior. Al ejecutar ```jps -l``` se produce el siguiente resultado:_
 
-13. Un elemento molesto para la simulación es que en cierto punto de la misma hay pocos 'inmortales' vivos realizando peleas fallidas con 'inmortales' ya muertos. Es necesario ir suprimiendo los inmortales muertos de la simulación a medida que van muriendo. Para esto:
+	![imagen](https://github.com/user-attachments/assets/889eed87-d771-443a-ac01-099848ebebeb)
+
+	_Por su parte, el comando jstack muestra el estado de todos los hilos en una impresión exaustiva:_
+
+	![imagen](https://github.com/user-attachments/assets/c5df26da-59c9-452f-b6e3-a938934d9eee)
+
+	```
+           Invoker.232.Thread.ReadAction=YES: Project(name=ConcurrentProgramming_Syncrhronization_DeadLocks_ThsSuspension-master, containerState=COMPONENT_CREATED, componentStore=C:			    		 \                Users\usuario\Downloads\ConcurrentProgramming_Syncrhronization_DeadLocks_ThsSuspension-master(1)\ConcurrentProgramming_Syncrhronization_DeadLocks_ThsSuspension-master)":supervisor:ChildScope{Active}
+           [ComponentManager(ApplicationImpl@1521833736)]
+ 	```
+
+12. Plantee una estrategia para corregir el problema antes identificado (puede revisar de nuevo las páginas 206 y 207 de _Java Concurrency in Practice_).
+
+13. Una vez corregido el problema, rectifique que el programa siga funcionando de manera consistente cuando se ejecutan 100, 1000 o 10000 inmortales. Si en estos casos grandes se empieza a incumplir de nuevo el invariante, debe analizar lo realizado en el paso 4.
+
+14. Un elemento molesto para la simulación es que en cierto punto de la misma hay pocos 'inmortales' vivos realizando peleas fallidas con 'inmortales' ya muertos. Es necesario ir suprimiendo los inmortales muertos de la simulación a medida que van muriendo. Para esto:
 	* Analizando el esquema de funcionamiento de la simulación, esto podría crear una condición de carrera? Implemente la funcionalidad, ejecute la simulación y observe qué problema se presenta cuando hay muchos 'inmortales' en la misma. Escriba sus conclusiones al respecto en el archivo RESPUESTAS.txt.
 	* Corrija el problema anterior __SIN hacer uso de sincronización__, pues volver secuencial el acceso a la lista compartida de inmortales haría extremadamente lenta la simulación.
 
-14. Para finalizar, implemente la opción STOP.
+15. Para finalizar, implemente la opción STOP.
 
 <!--
 ### Criterios de evaluación

@@ -145,6 +145,8 @@ Sincronización y Dead-Locks.
 
 16. Para finalizar, implemente la opción STOP.
 
+### Daniel Alejandro Acero
+
 <!--
 ### Criterios de evaluación
 
@@ -154,7 +156,6 @@ Sincronización y Dead-Locks.
 2. Parte II. (Retomando el laboratorio 1)
 	* Se modificó el ejercicio anterior para que los hilos llevaran conjuntamente (compartido) el número de ocurrencias encontradas, y se finalizaran y retornaran el valor en cuanto dicho número de ocurrencias fuera el esperado.
 	* Se garantiza que no se den condiciones de carrera modificando el acceso concurrente al valor compartido (número de ocurrencias).
-
 
 2. Parte III.
 	* Diseño:
@@ -175,7 +176,6 @@ Sincronización y Dead-Locks.
 		* Se cumple con el invariante al usar la aplicación con 10, 100 o 1000 hilos.
 		* La aplicación puede reanudar y finalizar(stop) su ejecución.
 
-### Daniel Alejandro Acero
   
 		-->
 

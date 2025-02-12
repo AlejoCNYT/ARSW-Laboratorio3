@@ -1,1 +1,0 @@
-**RTA**:\\ Se pueden generar condiciones de carrera debido a que múltiples hilos están tratando de acceder a la misma lista y, no hay operaciones atómicas que eviten posibles '''ConcurrentModificationException ''' o '''NullPointerException'''. 

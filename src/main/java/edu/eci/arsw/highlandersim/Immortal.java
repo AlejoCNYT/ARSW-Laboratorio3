@@ -18,6 +18,8 @@ public class Immortal extends Thread
 
     private final Random r = new Random(System.currentTimeMillis());
 
+    private boolean alive = true;
+
     public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb)
     {
         super(name);
@@ -28,9 +30,19 @@ public class Immortal extends Thread
         this.defaultDamageValue=defaultDamageValue;
     }
 
+    public boolean estaVivo()
+    {
+        return alive;
+    }
+
+    public void morir()
+    {
+        alive = false;
+    }
+
     public void run()
     {
-        while (true)
+        while (estaVivo())
         {
             Immortal im;
 
@@ -62,6 +74,13 @@ public class Immortal extends Thread
     {
         Immortal first = this;
         Immortal second = i2;
+
+        // if (!this.estaVivo() || !second.estaVivo())
+        // {
+        // System.out.println("ERROR: " + this.name + " intentó pelear con " + second.name + " que está muerto.");
+        // return; // Evitar la pelea
+        // }
+        // System.out.println(this.name + " pelea con " + second.name);
 
         if (System.identityHashCode(this) > System.identityHashCode(i2))
         {

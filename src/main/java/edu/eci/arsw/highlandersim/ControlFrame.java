@@ -105,6 +105,18 @@ public class ControlFrame extends JFrame {
 
                 statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
 
+                List<Immortal> vivos =  new LinkedList<>();
+
+                for (Immortal im : immortals)
+                {
+                    if (im.estaVivo())
+                    {
+                        vivos.add(im);
+                    }
+                }
+
+                // Reemplazar la lista original con la nueva
+                immortals = vivos;
 
 
             }
@@ -175,12 +187,14 @@ public class ControlFrame extends JFrame {
 
 }
 
-class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback{
+class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback
+{
 
     JTextArea ta;
     JScrollPane jsp;
 
-    public TextAreaUpdateReportCallback(JTextArea ta,JScrollPane jsp) {
+    public TextAreaUpdateReportCallback(JTextArea ta,JScrollPane jsp)
+    {
         this.ta = ta;
         this.jsp=jsp;
     }

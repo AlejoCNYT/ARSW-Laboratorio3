@@ -146,7 +146,7 @@ Sincronización y Dead-Locks.
 16. Para finalizar, implemente la opción STOP.
 
 ### Daniel Alejandro Acero
-
+### Juan Felipe A. Martinez
 <!--
 ### Criterios de evaluación
 
